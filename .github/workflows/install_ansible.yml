@@ -18,7 +18,7 @@ jobs:
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install Ansible
-        run: pip3 install --user ansible
+        run: pip3 install --user ansible --break-system-packages
 
       - name: Check ansible version
         run: ansible --version
