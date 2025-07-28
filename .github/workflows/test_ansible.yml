@@ -1,24 +1,20 @@
-name: Prepare runner for Ansible
+name: Test Playbook
 
 on:
   workflow_dispatch:
 
 jobs:
-  prepare-runner:
-    name: "Prepare runner with pip and Ansible"
+  run-playbook:
     runs-on: self-hosted
 
     steps:
-      - name: Ensure pip is installed
-        run: |
-          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-          python3 get-pip.py --user
-
-      - name: Add pip user bin to PATH
-        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
-
-      - name: Install Ansible
-        run: pip3 install --user ansible
-
-      - name: Check ansible version
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: set enviroment variable PATH
+        run: export PATH=$PATH:
+      - name: Verify Ansible is installed
         run: ansible --version
+      - name: Check directory
+        run: ls -l
+      - name: Run demo_playbook.yml
+        run: ansible-playbook demo_playbook.yaml
