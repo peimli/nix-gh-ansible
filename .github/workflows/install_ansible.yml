@@ -12,7 +12,7 @@ jobs:
       - name: Ensure pip is installed
         run: |
           curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-          python3 get-pip.py --user
+          python3 get-pip.py --user --break-system-packages
 
       - name: Add pip user bin to PATH
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
